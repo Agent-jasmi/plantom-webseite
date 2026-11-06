@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PLANTOM Steuerungsbüro – Bauleitung & Projektsteuerung</title>
+<meta name="description" content="plAntom Steuerungsbüro: Bauleitung, Projektsteuerung, Sanierung, CAD-Planung und Koordination von Bauprojekten.">
+<style>
+/* ===== Design-Tokens: zentral anpassen ===== */
+:root{
+  --bg:#0a0a0b; --surface:#141416; --surface2:#1b1b1e; --line:#2a2a2e;
+  --text:#d5d8dd; --muted:#8e939b; --silver:linear-gradient(180deg,#fff 0%,#d9dce1 45%,#8d929a 100%);
+  --gold:#c9a24b; --gold2:#e6c878; --gold-ink:#16120a;
+  --radius:10px; --maxw:1120px; --gap:clamp(1rem,2.5vw,1.75rem);
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.65;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
+a{color:inherit}
+.wrap{width:min(100% - 2rem,var(--maxw));margin-inline:auto}
+section{padding:clamp(3.5rem,9vw,6.5rem) 0}
+h2,h3{margin:0 0 .6rem;line-height:1.2}
+h2{font-size:clamp(1.7rem,4.5vw,2.6rem);font-weight:300;letter-spacing:.14em;text-transform:uppercase;background:var(--silver);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2::after{content:"";display:block;width:64px;height:2px;background:var(--gold);margin-top:.8rem}
+h3{font-size:1.05rem;letter-spacing:.06em;color:#fff}
+p{margin:0 0 1rem}
+.lead{color:var(--muted);max-width:62ch;font-size:1.05rem}
+.gold{color:var(--gold)}
+
+/* Navigation */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(10,10,11,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:700;letter-spacing:.28em;text-decoration:none;color:#fff;font-size:1rem}
+.logo i{color:var(--gold);font-style:normal}
+.menu{display:flex;gap:2rem;align-items:center}
+.menu a{text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;color:var(--muted);padding:.4rem 0;border-bottom:1px solid transparent;transition:.2s}
+.menu a:hover{color:var(--gold2);border-color:var(--gold)}
+.burger{display:none;background:none;border:1px solid var(--gold);color:var(--gold);border-radius:var(--radius);padding:.45rem .7rem;font-size:1.1rem;cursor:pointer}
+@media (max-width:760px){
+  .burger{display:block}
+  .menu{display:none;position:absolute;left:0;right:0;top:68px;background:var(--surface);flex-direction:column;align-items:stretch;gap:0;padding:.4rem 1.2rem 1rem;border-bottom:1px solid var(--line)}
+  .menu.open{display:flex}
+  .menu a{padding:.9rem 0;border-bottom:1px solid var(--line)}
+}
+
+/* Buttons */
+.btn{display:inline-block;padding:.9rem 1.8rem;border:1px solid var(--gold);border-radius:3px;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:600;text-decoration:none;cursor:pointer;font-family:inherit;transition:.25s;background:linear-gradient(135deg,var(--gold2),var(--gold));color:var(--gold-ink)}
+.btn:hover{box-shadow:0 0 24px rgba(201,162,75,.35);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--gold2)}
+.btn.ghost:hover{background:rgba(201,162,75,.1)}
+
+/* Hero */
+.hero{min-height:88vh;display:grid;align-items:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#232326 0%,var(--bg) 65%)}
+.hero::before{content:"";position:absolute;inset:0;opacity:.06;background:repeating-linear-gradient(90deg,#fff 0 1px,transparent 1px 80px)}
+.hero .wrap{position:relative}
+.hero h1{margin:0;font-size:clamp(3rem,15vw,9.5rem);font-weight:800;letter-spacing:.08em;line-height:1;background:var(--silver);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 24px rgba(0,0,0,.6))}
+.hero .sub{margin:1.2rem 0 0;color:var(--gold);text-transform:uppercase;letter-spacing:.5em;font-size:clamp(.7rem,2vw,1rem)}
+.hero .rule{width:90px;height:2px;background:var(--gold);margin:1.8rem auto}
+.hero p.lead{margin-inline:auto}
+.actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+
+/* Karten */
+.grid{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:2.5rem}
+.card{background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;transition:.25s}
+.card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.card p{color:var(--muted);margin:0}
+.ico{font-size:1.5rem;color:var(--gold);margin-bottom:.9rem;display:block}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+
+/* Über mich */
+.two{display:grid;gap:3rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center}
+.portrait{aspect-ratio:4/5;max-width:380px;width:100%;margin-inline:auto;border:1px solid var(--gold);border-radius:var(--radius);background:linear-gradient(160deg,#2a2a2e,#0f0f11);display:grid;place-items:center;color:var(--muted);text-align:center;padding:1rem;font-size:.9rem;position:relative}
+.portrait::after{content:"";position:absolute;inset:10px;border:1px solid var(--line);border-radius:6px;pointer-events:none}
+.checks{list-style:none;padding:0;margin:1.2rem 0 0}
+.checks li{position:relative;padding-left:1.6rem;margin-bottom:.6rem}
+.checks li::before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:.7rem;top:.3rem}
+
+/* Projekte: Vorher-Nachher */
+.proj{padding:0;overflow:hidden}
+.proj .body{padding:1.2rem 1.4rem 1.5rem}
+.proj .tag{color:var(--gold);text-transform:uppercase;letter-spacing:.18em;font-size:.7rem}
+.ba{--p:50%;position:relative;aspect-ratio:4/3;overflow:hidden;background:#222}
+.ba .l{position:absolute;inset:0;display:grid;place-items:center;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:#fff}
+.ba .before{background:repeating-linear-gradient(45deg,#2c2c2e 0 14px,#232325 14px 28px);filter:grayscale(1)}
+.ba .after{background:linear-gradient(135deg,#3a3120,#b8923f 60%,#e6c878);clip-path:inset(0 0 0 var(--p))}
+.ba b{position:absolute;top:.7rem;padding:.2rem .6rem;background:rgba(0,0,0,.65);border:1px solid var(--gold);border-radius:3px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2)}
+.ba .bl{left:.7rem}.ba .br{right:.7rem}
+.ba .bar{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:var(--gold2);transform:translateX(-1px);pointer-events:none}
+.ba .bar::after{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--gold);color:var(--gold-ink);display:grid;place-items:center;font-weight:700}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+
+/* Kontakt */
+.contact address{font-style:normal;margin:1.4rem 0;color:var(--muted)}
+.contact address a{color:var(--gold2);text-decoration:none}
+label{font-size:.75rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+.fld{width:100%;padding:.8rem;margin:.4rem 0 1.1rem;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--text);font:inherit}
+.fld:focus{outline:none;border-color:var(--gold)}
+footer{border-top:1px solid var(--line);padding:1.6rem 0;font-size:.85rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#start">PL<i>A</i>NTOM</a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">☰</button>
+    <nav class="menu" id="menu" aria-label="Hauptnavigation">
+      <a href="#ueber-mich">Über mich</a>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#projekte">Projekte</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="hero" id="start">
+  <div class="wrap">
+    <h1>PLANTOM</h1>
+    <p class="sub">Steuerungsbüro</p>
+    <div class="rule"></div>
+    <p class="lead">Bauleitung · Projektsteuerung · Sanierung · CAD-Planung · Koordination von Bauprojekten</p>
+    <div class="actions">
+      <a class="btn" href="#kontakt">Projekt anfragen</a>
+      <a class="btn ghost" href="#projekte">Projekte ansehen</a>
+    </div>
+  </div>
+</section>
+
+<section id="ueber-mich">
+  <div class="wrap two">
+    <div>
+      <h2>Über mich</h2>
+      <p class="lead" style="margin-top:1.4rem">Als Steuerungsbüro verbinde ich Erfahrung auf der Baustelle mit präziser digitaler Planung. Sie haben einen festen Ansprechpartner, der Termine, Kosten und Qualität im Blick behält.</p>
+      <ul class="checks">
+        <li>Transparente Kommunikation und klare Statusberichte</li>
+        <li>Saubere Dokumentation über alle Projektphasen</li>
+        <li>Verlässliches Netzwerk aus Planern und Handwerksbetrieben</li>
+      </ul>
+    </div>
+    <div class="portrait" role="img" aria-label="Platzhalter für Porträtfoto">Platzhalter:<br>Porträtfoto</div>
+  </div>
+</section>
+
+<!-- Neue Leistung: einen <article class="card"> kopieren -->
+<section id="leistungen" class="alt">
+  <div class="wrap">
+    <h2>Leistungen</h2>
+    <div class="grid">
+      <article class="card"><span class="ico">◆</span><h3>BAULEITUNG</h3><p>Überwachung der Ausführung, Qualitätskontrolle, Baustellendokumentation und Mängelmanagement.</p></article>
+      <article class="card"><span class="ico">◆</span><h3>PROJEKTSTEUERUNG</h3><p>Termin-, Kosten- und Ressourcenplanung mit regelmäßigem Reporting.</p></article>
+      <article class="card"><span class="ico">◆</span><h3>SANIERUNG</h3><p>Bestandsaufnahme, Konzept und Umsetzung von Sanierung und Umbau.</p></article>
+      <article class="card"><span class="ico">◆</span><h3>CAD-PLANUNG</h3><p>Grundrisse, Schnitte und Detailpläne – digital, präzise und ausführungsreif.</p></article>
+      <article class="card"><span class="ico">◆</span><h3>KOORDINATION</h3><p>Abstimmung zwischen Bauherr, Planern, Behörden und ausführenden Firmen.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="projekte">
+  <div class="wrap">
+    <h2>Projekte</h2>
+    <p class="lead" style="margin-top:1.4rem">Ziehen Sie den Regler, um den Zustand vor und nach der Maßnahme zu vergleichen.</p>
+    <div class="grid">
+      <!-- Echte Bilder: .before/.after durch <img src="…"> ersetzen -->
+      <article class="card proj">
+        <div class="ba"><div class="l before">Vorher</div><div class="l after">Nachher</div><b class="bl">Vorher</b><b class="br">Nachher</b><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich Projekt 1"></div>
+        <div class="body"><span class="tag">Sanierung</span><h3>Projekt 1</h3><p>Kurzbeschreibung des Projekts.</p></div>
+      </article>
+      <article class="card proj">
+        <div class="ba"><div class="l before">Vorher</div><div class="l after">Nachher</div><b class="bl">Vorher</b><b class="br">Nachher</b><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich Projekt 2"></div>
+        <div class="body"><span class="tag">Umbau</span><h3>Projekt 2</h3><p>Kurzbeschreibung des Projekts.</p></div>
+      </article>
+      <article class="card proj">
+        <div class="ba"><div class="l before">Vorher</div><div class="l after">Nachher</div><b class="bl">Vorher</b><b class="br">Nachher</b><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich Projekt 3"></div>
+        <div class="body"><span class="tag">Bauleitung</span><h3>Projekt 3</h3><p>Kurzbeschreibung des Projekts.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="alt contact">
+  <div class="wrap two">
+    <div>
+      <h2>Kontakt</h2>
+      <p class="lead" style="margin-top:1.4rem">Schildern Sie mir kurz Ihr Vorhaben – ich melde mich zeitnah.</p>
+      <address>
+        PLANTOM Steuerungsbüro<br>[Straße Nr.], [PLZ Ort]<br>
+        Tel.: <a href="tel:+49000000000">[Telefonnummer]</a><br>
+        E-Mail: <a href="mailto:info@example.de">[info@ihre-domain.de]</a>
+      </address>
+    </div>
+    <div class="card">
+      <label for="n">Name</label><input class="fld" id="n" autocomplete="name">
+      <label for="m">Nachricht</label><textarea class="fld" id="m" rows="4"></textarea>
+      <button class="btn" id="send" type="button">Nachricht senden</button>
+      <p style="font-size:.78rem;color:var(--muted);margin:.9rem 0 0">Öffnet Ihr E-Mail-Programm. Ein echtes Formular kann später angebunden werden.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© <span id="y">2026</span> PLANTOM Steuerungsbüro</span><span>Impressum · Datenschutz</span></div></footer>
+
+<script>
+const menu=document.getElementById('menu'),bg=document.getElementById('burger');
+bg.onclick=()=>{bg.setAttribute('aria-expanded',menu.classList.toggle('open'))};
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');bg.setAttribute('aria-expanded',false)});
+document.querySelectorAll('.ba input').forEach(i=>{const s=()=>i.parentNode.style.setProperty('--p',i.value+'%');i.oninput=s;s()});
+document.getElementById('y').textContent=new Date().getFullYear();
+document.getElementById('send').onclick=()=>{location.href='mailto:info@example.de?subject='+encodeURIComponent('Anfrage über die Website')+'&body='+encodeURIComponent(document.getElementById('m').value+'\n\n'+document.getElementById('n').value)};
+</script>
+</body>
+</html>
