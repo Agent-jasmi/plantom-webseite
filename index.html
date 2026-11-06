@@ -1,3 +1,371 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PLANTOM Steuerungsbüro – Bauleitung & Projektsteuerung</title>
+<meta name="description" content="plAntom Steuerungsbüro: Bauleitung, Projektsteuerung, Sanierung, CAD-Planung und Koordination von Bauprojekten.">
+<style>
+/* ===== Design-Tokens: zentral anpassen ===== */
+:root{
+  --bg:#0a0a0b; --surface:#141416; --surface2:#1b1b1e; --line:#2a2a2e;
+  --text:#d5d8dd; --muted:#8e939b; --silver:linear-gradient(180deg,#fff 0%,#d9dce1 45%,#8d929a 100%);
+  --gold:#c9a24b; --gold2:#e6c878; --gold-ink:#16120a;
+  --radius:10px; --maxw:1120px; --gap:clamp(1rem,2.5vw,1.75rem);
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color-scheme:dark; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.65;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
+a{color:inherit}
+.wrap{width:min(100% - 2rem,var(--maxw));margin-inline:auto}
+section{padding:clamp(3.5rem,9vw,6.5rem) 0}
+h2,h3{margin:0 0 .6rem;line-height:1.2}
+h2{font-size:clamp(1.7rem,4.5vw,2.6rem);font-weight:300;letter-spacing:.14em;text-transform:uppercase;background:var(--silver);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2::after{content:"";display:block;width:64px;height:2px;background:var(--gold);margin-top:.8rem}
+h3{font-size:1.05rem;letter-spacing:.06em;color:#fff}
+p{margin:0 0 1rem}
+.lead{color:var(--muted);max-width:62ch;font-size:1.05rem}
+.gold{color:var(--gold)}
+
+/* Navigation */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(10,10,11,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:700;letter-spacing:.28em;text-decoration:none;color:#fff;font-size:1rem}
+.logo i{color:var(--gold);font-style:normal}
+.menu{display:flex;gap:2rem;align-items:center}
+.menu a{text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;color:var(--muted);padding:.4rem 0;border-bottom:1px solid transparent;transition:.2s}
+.menu a:hover{color:var(--gold2);border-color:var(--gold)}
+.burger{display:none;background:none;border:1px solid var(--gold);color:var(--gold);border-radius:var(--radius);padding:.45rem .7rem;font-size:1.1rem;cursor:pointer}
+@media (max-width:760px){
+  .burger{display:block}
+  .menu{display:none;position:absolute;left:0;right:0;top:68px;background:var(--surface);flex-direction:column;align-items:stretch;gap:0;padding:.4rem 1.2rem 1rem;border-bottom:1px solid var(--line)}
+  .menu.open{display:flex}
+  .menu a{padding:.9rem 0;border-bottom:1px solid var(--line)}
+}
+
+/* Buttons */
+.btn{display:inline-block;padding:.9rem 1.8rem;border:1px solid var(--gold);border-radius:3px;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:600;text-decoration:none;cursor:pointer;font-family:inherit;transition:.25s;background:linear-gradient(135deg,var(--gold2),var(--gold));color:var(--gold-ink)}
+.btn:hover{box-shadow:0 0 24px rgba(201,162,75,.35);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--gold2)}
+.btn.ghost:hover{background:rgba(201,162,75,.1)}
+
+/* Hero */
+.hero{min-height:88vh;display:grid;align-items:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#232326 0%,var(--bg) 65%)}
+.hero::before{content:"";position:absolute;inset:0;opacity:.06;background:repeating-linear-gradient(90deg,#fff 0 1px,transparent 1px 80px)}
+.hero .wrap{position:relative}
+.hero h1{margin:0;font-size:clamp(3rem,15vw,9.5rem);font-weight:800;letter-spacing:.08em;line-height:1;background:var(--silver);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 24px rgba(0,0,0,.6))}
+.hero .sub{margin:1.2rem 0 0;color:var(--gold);text-transform:uppercase;letter-spacing:.5em;font-size:clamp(.7rem,2vw,1rem)}
+.hero .rule{width:90px;height:2px;background:var(--gold);margin:1.8rem auto}
+.hero p.lead{margin-inline:auto}
+.actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.hero-slogan { font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 400; color: #d5d8dd; text-align:center; letter-spacing: 0.06em; line-height:1.6; margin: 1.5rem auto 1rem; max-width: 750px; 
+  -webkit-text-fill-color:#d5d8dd; text-transform:none;font-family: 'Montserrat', sans-serif;}
+.hero-slogan::after {display:none;}
+.hero .lead {font-size: 1rem; color: #9299a3; max-width: 650px; margin: 0 auto; line-height: 1.7;}
+.hero h1 .gold-letter {background: linear-gradient(180deg, #f5dc95 0%, #c9a24b 55%, #a67c28 100%); -webkit-background-clip:text; background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.1em; display: inline-block;}
+
+/* Karten */
+.grid{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:2.5rem}
+.card{background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;transition:.25s}
+.card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.card p{color:var(--muted);margin:0}
+.ico{font-size:1.5rem;color:var(--gold);margin-bottom:.9rem;display:block}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.service-columns {display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem; align-items: start;}
+.service-group{margin-top:3.5rem;}
+.service-group-title{font-size:1rem;font-weight:600;color:#c9a24b;margin-bottom:1rem;padding-bottom:1rem; letter-spacing:.15em; border-bottom: 1px solid #c9a24b;}
+.service-item {display: grid; grid-template-columns: 45px 1 fr; gap: 1rem; align-items: start; padding: 1.2rem 0; border-bottom: 1px solid #303036; transition: 0.3s ease;}
+.service-item:hover {padding-left: 10px; border-color: #c9a24b; }
+.service-number {font-size: 1.8rem; font-weight: 800; line-height: 1; color: #777d86;}
+.service-item h4 { margin: 0 0 0.5rem; color: #ffffff; font-size: 1rem; text-transform: uppercase; letter-spacing: .03em; }
+.service-item p { margin: 0; color: #b8bdc5; font-size: 0.9rem; line-height: 1.5; max-width: 650px; }
+@media (max-width: 800px) {
+  .service-columns {grid-template-columns: 1fr; gap: 1rem;}
+  .service-item { grid-template-columns: 45px 1fr; gap: 1rem; padding: 1.5rem 0; }
+  .service-number { font-size: 1.7rem; }
+  .service-item h4 { font-size: 1rem; }
+  .service-item p { font-size: 0.9rem; }
+  .service-group-title { font-size: 0.85rem; letter-spacing: 0.08em;}}
+
+/* Über mich */
+.two{display:grid;gap:3rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center}
+.portrait{aspect-ratio:4/5;max-width:380px;width:100%;margin-inline:auto;border:1px solid var(--gold);border-radius:var(--radius);background:linear-gradient(160deg,#2a2a2e,#0f0f11);display:grid;place-items:center;color:var(--muted);text-align:center;padding:1rem;font-size:.9rem;position:relative}
+.portrait::after{content:"";position:absolute;inset:10px;border:1px solid var(--line);border-radius:6px;pointer-events:none}
+.about-list-title{font-size:1.15rem;font-weight:600;color:#ffffff;margin-top:2rem;margin-bottom:.1rem; letter-spacing:.02em}
+.checks{list-style:none;padding:0;margin:1.2rem 0 0}
+.checks li{position:relative;padding-left:1.6rem;margin-bottom:.6rem;font-size: 1rem; line-height:1.7; color: #e2e3e6; margin-bottom: 0.9rem}
+.checks li::before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:.7rem;top:.3rem}
+.checks strong {color: #ffffff; font-weight: 600; }
+.about-subtitle{ font-size:1.4rem; font-weight:600; color: #c9a24b; margin-top: 1.5rem; margin-bottom: 1.2rem; line-height:1.4;}
+.about-text{ font-size:1.05rem; color: #b8bdc5; line-height:1.8; margin-bottom: 1.2rem;}
+.about-right {display: flex; flex-direction: column; align-items: center;width:100%; min-width: 0;}
+.about-right .portrait {width: 100%; max-width: 380px; margin: 0 auto;}
+.about-stats {display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:10px; width: 100%; max-width: 380px; margin: 35px auto 0;}
+.stat-card {background:#141416; border:1px solid #303036; border-radius:12px; padding:18px 6px; text-align:center;}
+.stat-card strong {display:block; font-size:clamp (1.4rem, 2.5vw, 2.2rem); color:#c9a24b; font-weight:800;}
+.stat-card span {display:block; font-size:.75rem; color:#b8bdc5; line-height:1.4;}
+
+/* Projekte: Vorher-Nachher */
+.proj{padding:0;overflow:hidden}
+.proj .body{padding:1.2rem 1.4rem 1.5rem}
+.proj .tag{color:var(--gold);text-transform:uppercase;letter-spacing:.18em;font-size:.7rem}
+.ba{--p:50%;position:relative;aspect-ratio:4/3;overflow:hidden;background:#222}
+.ba .l{position:absolute;inset:0;display:grid;place-items:center;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:#fff}
+.ba .before{background:repeating-linear-gradient(45deg,#2c2c2e 0 14px,#232325 14px 28px);filter:grayscale(1)}
+.ba .after{background:linear-gradient(135deg,#3a3120,#b8923f 60%,#e6c878);clip-path:inset(0 0 0 var(--p))}
+.ba b{position:absolute;top:.7rem;padding:.2rem .6rem;background:rgba(0,0,0,.65);border:1px solid var(--gold);border-radius:3px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2)}
+.ba .bl{left:.7rem}.ba .br{right:.7rem}
+.ba .bar{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:var(--gold2);transform:translateX(-1px);pointer-events:none}
+.ba .bar::after{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--gold);color:var(--gold-ink);display:grid;place-items:center;font-weight:700}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+
+/* Kontakt */
+.contact address{font-style:normal;margin:1.4rem 0;color:var(--muted)}
+.contact address a{color:var(--gold2);text-decoration:none}
+label{font-size:.75rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+.fld{width:100%;padding:.8rem;margin:.4rem 0 1.1rem;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--text);font:inherit}
+.fld:focus{outline:none;border-color:var(--gold)}
+footer{border-top:1px solid var(--line);padding:1.6rem 0;font-size:.85rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#start">PL<i>A</i>NTOM</a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">☰</button>
+    <nav class="menu" id="menu" aria-label="Hauptnavigation">
+      <a href="#ueber-mich">Über mich</a>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#projekte">Projekte</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="hero" id="start">
+  <div class="wrap">
+    <h1>PL<span class="gold-letter">A</span>NTOM</h1>
+    <p class="sub">Steuerungsbüro</p>
+    <div class="rule"></div>
+    <h2 class="hero-slogan"> Ihr Bauvorhaben. Meine Verantwortung. Gemeinsam zum Ziel.</h2>
+    <p class="lead">Professionelle Planung, Bauleitung und Projektsteuerung – zuverlässig, strukturiert und persönlich. </p>
+    <div class="actions">
+      <a class="btn" href="#kontakt">Projekt anfragen</a>
+      <a class="btn ghost" href="#projekte">Projekte ansehen</a>
+    </div>
+  </div>
+</section>
+
+<section id="ueber-mich">
+  <div class="wrap two">
+    <div>
+      <h2>Über mich</h2>
+      <p class="about-subtitle">20 Jahre Bauerfahrung. Ein Ansprechpartner für Ihr Projekt.</p>
+      <p class="about-text"> Mein Name ist <b>Artjom Stepanov</b>. Seit rund <b>20 Jahren</b> bin ich im Bauwesen tätig, vom Fenstereinbau über die Altbausanierung bis zur Bauleitung komplexer Projekte.</p>
+      <p> Mit <strong>plAntom</strong> unterstütze ich Sie bei der Planung, Koordination und erfolgreichen Umsetzung ihrer Bauvorhaben.</p>
+      <h3 class="about-list-title"> Was Sie von mir erwarten können:</h3>
+      <ul class="checks">
+        <li><strong>Erfahrung aus der Praxis </strong>– Rund 20 Jahre im Bauwesen</li>
+        <li><strong>Alles aus einer Hand </strong>– Planung, Bauleitung und Koordination</li>
+        <li><strong>Termine und Kosten im Blick </strong>– Struktuierte Projektsteuerung</li>
+        <li><strong>Persönliche Betreuung </strong>– Ihr Ansprechpartner für alle Projektphasen</li>
+      </ul>
+    </div>
+
+<div class="about-right">
+  <div class="portrait" role="img" aria-label="Platzhalter für Porträtfoto">Platzhalter:<br>Porträtfoto</div>
+<div class="about-stats">
+    <div class="stat-card"> 
+      <strong> 20+ </strong>
+      <span> Jahre Baupraxis</span> 
+    </div>
+  <div class="stat-card">
+      <strong> 25 </strong>
+      <span> Personen koordiniert</span>
+  </div>
+  <div class="stat-card">
+      <strong> 100 </strong>
+      <span> km Einsatzradius</span>
+  </div>
+  </div>
+</div>
+</div>
+
+</section>
+
+<section id="leistungen" class="alt">
+  <div class="wrap">
+
+    <h2>Leistungen</h2>
+        <div class="service-columns"> 
+
+    <div class="service-group">
+
+      <h3 class="service-group-title">
+        01 / PLANUNG & MANAGEMENT
+      </h3>
+
+      <div class="service-item">
+        <span class="service-number">01</span>
+        <div>
+          <h4>Projektsteuerung</h4>
+          <p>Planung, Organisation und Koordination aller Projektphasen - von der ersten Idee bis zur Fertigstellung.</p>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-number">02</span>
+        <div>
+          <h4>Bauleitung vor Ort</h4>
+          <p>Überwachung der Bauausführung, Abstimmung der Gewerke und Sicherstellung eines strukturierten Bauablaufs.</p>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-number">03</span>
+        <div>
+          <h4>CAD-Planung</h4>
+          <p>Digitale Grundrisse, technische Zeichnungen und Visualisierungen für Bau- und Sanierungsprojekte.</p>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-number">04</span>
+        <div>
+          <h4>Termin- & Kostenkontrolle</h4>
+          <p>Überwachung von Zeitplänen und Budgets, um mögliche Abweichungen frühzeitig zu erkennen.</p>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-number">05</span>
+        <div>
+          <h4>Nachunternehmer-Koordination</h4>
+          <p>Abstimmung und Organisation der beteiligten Fachbetriebe für reibungslose Arbeitsabläufe.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="service-group">
+
+      <h3 class="service-group-title">
+        02 / BAU & MODERNISIERUNG
+      </h3>
+
+    <div class="service-item">
+        <span class="service-number">06</span>
+        <div>
+          <h4>Abnahme & Mängelmanagement</h4>
+          <p>Begleitung von Abnahmen, Dokumentation von Mängeln und Koordination ihrer Beseitigung.</p>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-number">07</span>
+        <div>
+          <h4>Sanierung</h4>
+          <p>Planung, Organisation und Begleitung von Sanierungs- und Modernisierungsmaßnahmen.</p>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-number">08</span>
+        <div>
+          <h4>Fenster & Türen</h4>
+          <p>Beratung, Auswahl geeigneter Lösungen und Koordination des fachgerechten Einbaus.</p>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-number">09</span>
+        <div>
+          <h4>PV-Anlagen</h4>
+          <p>Unterstützung bei der Planung, Auswahl und Koordination von Photovoltaikprojekten.</p>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <span class="service-number">10</span>
+        <div>
+          <h4>Digitalisierung am Bau</h4>
+          <p>Einsatz digitaler Werkzeuge für Planung, Dokumentation und effiziente Projektsteuerung.</p>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+
+</section>
+
+<section id="projekte">
+  <div class="wrap">
+    <h2>Projekte</h2>
+    <p class="lead" style="margin-top:1.4rem">Ziehen Sie den Regler, um den Zustand vor und nach der Maßnahme zu vergleichen.</p>
+    <div class="grid">
+      <!-- Echte Bilder: .before/.after durch <img src="…"> ersetzen -->
+      <article class="card proj">
+        <div class="ba"><div class="l before">Vorher</div><div class="l after">Nachher</div><b class="bl">Vorher</b><b class="br">Nachher</b><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich Projekt 1"></div>
+        <div class="body"><span class="tag">Sanierung</span><h3>Projekt 1</h3><p>Kurzbeschreibung des Projekts.</p></div>
+      </article>
+      <article class="card proj">
+        <div class="ba"><div class="l before">Vorher</div><div class="l after">Nachher</div><b class="bl">Vorher</b><b class="br">Nachher</b><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich Projekt 2"></div>
+        <div class="body"><span class="tag">Umbau</span><h3>Projekt 2</h3><p>Kurzbeschreibung des Projekts.</p></div>
+      </article>
+      <article class="card proj">
+        <div class="ba"><div class="l before">Vorher</div><div class="l after">Nachher</div><b class="bl">Vorher</b><b class="br">Nachher</b><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich Projekt 3"></div>
+        <div class="body"><span class="tag">Bauleitung</span><h3>Projekt 3</h3><p>Kurzbeschreibung des Projekts.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="alt contact">
+  <div class="wrap two">
+    <div>
+      <h2>Kontakt</h2>
+      <p class="lead" style="margin-top:1.4rem">Schildern Sie mir kurz Ihr Vorhaben – ich melde mich zeitnah.</p>
+      <address>
+        PLANTOM Steuerungsbüro<br>[Straße Nr.], [PLZ Ort]<br>
+        Tel.: <a href="tel:+49000000000">[Telefonnummer]</a><br>
+        E-Mail: <a href="mailto:info@example.de">[info@ihre-domain.de]</a>
+      </address>
+    </div>
+    <div class="card">
+      <label for="n">Name</label><input class="fld" id="n" autocomplete="name">
+      <label for="m">Nachricht</label><textarea class="fld" id="m" rows="4"></textarea>
+      <button class="btn" id="send" type="button">Nachricht senden</button>
+      <p style="font-size:.78rem;color:var(--muted);margin:.9rem 0 0">Öffnet Ihr E-Mail-Programm. Ein echtes Formular kann später angebunden werden.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© <span id="y">2026</span> PLANTOM Steuerungsbüro</span><span>Impressum · Datenschutz</span></div></footer>
+
+<script>
+const menu=document.getElementById('menu'),bg=document.getElementById('burger');
+bg.onclick=()=>{bg.setAttribute('aria-expanded',menu.classList.toggle('open'))};
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');bg.setAttribute('aria-expanded',false)});
+document.querySelectorAll('.ba input').forEach(i=>{const s=()=>i.parentNode.style.setProperty('--p',i.value+'%');i.oninput=s;s()});
+document.getElementById('y').textContent=new Date().getFullYear();
+document.getElementById('send').onclick=()=>{location.href='mailto:info@example.de?subject='+encodeURIComponent('Anfrage über die Website')+'&body='+encodeURIComponent(document.getElementById('m').value+'\n\n'+document.getElementById('n').value)};
+</script>
+</body>
+</html>
+=======
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -359,3 +727,4 @@ document.getElementById('send').onclick=()=>{location.href='mailto:info@example.
 </script>
 </body>
 </html>
+>>>>>>> 368adbfb142ec0bc8a3c5b2e29251483073cd6b2
