@@ -27,8 +27,8 @@
   --radius:10px; --maxw:1120px; --gap:clamp(1rem,2.5vw,1.75rem);
   --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   color-scheme:dark; box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);}
+
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px))}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.65;-webkit-text-size-adjust:100%}
@@ -367,7 +367,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem
 </section>
 </main>
 
-<footer><div class="wrap"><span>© <span id="y">2026</span> PLANTOM Steuerungsbüro</span><span>Impressum · Datenschutz</span></div></footer>
+<footer><div class="wrap"><span>© <span id="y">2026</span> PLANTOM Steuerungsbüro</span>
+<span><a href="impressum.html">Impressum</a>
+·
+<a href="datenschutz.html">Datenschutz</a></span></div></footer>
 
 <script>
 const menu=document.getElementById('menu'),bg=document.getElementById('burger');
