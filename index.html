@@ -124,20 +124,39 @@ header .nav {width: 100%;max-width: none;padding-left: 30px;padding-right: 30px;
 .stat-card {background:#141416; border:1px solid #303036; border-radius:12px; padding:18px 6px; text-align:center;}
 .stat-card strong {display:block; font-size:clamp(1.4rem,2.5vw,2.2rem); color:#c9a24b; font-weight:800;}
 .stat-card span {display:block; font-size:.75rem; color:#b8bdc5; line-height:1.4;}
+.portrait-logo {display: block;width: 100%;height: 100%;object-fit: contain;border-radius: 8px;}
 
 /* Projekte: Vorher-Nachher */
-.proj{padding:0;overflow:hidden}
-.proj .body{padding:1.2rem 1.4rem 1.5rem}
-.proj .tag{color:var(--gold);text-transform:uppercase;letter-spacing:.18em;font-size:.7rem}
-.ba{--p:50%;position:relative;aspect-ratio:4/3;overflow:hidden;background:#222}
-.ba .l{position:absolute;inset:0;display:grid;place-items:center;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:#fff}
-.ba .before{background:repeating-linear-gradient(45deg,#2c2c2e 0 14px,#232325 14px 28px);filter:grayscale(1)}
-.ba .after{background:linear-gradient(135deg,#3a3120,#b8923f 60%,#e6c878);clip-path:inset(0 0 0 var(--p))}
-.ba b{position:absolute;top:.7rem;padding:.2rem .6rem;background:rgba(0,0,0,.65);border:1px solid var(--gold);border-radius:3px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2)}
-.ba .bl{left:.7rem}.ba .br{right:.7rem}
-.ba .bar{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:var(--gold2);transform:translateX(-1px);pointer-events:none}
-.ba .bar::after{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--gold);color:var(--gold-ink);display:grid;place-items:center;font-weight:700}
-.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.proj {padding: 0;overflow: hidden;}
+.proj .body {padding: 1.2rem 1.4rem 1.5rem;}
+.proj .tag {color: var(--gold);text-transform: uppercase;letter-spacing: .18em;font-size: .7rem;}
+/* Vorher-Nachher-Vergleich */
+.ba {--p: 50%;position: relative;aspect-ratio: 4/3;overflow: hidden;background: #222;}
+.ba .l {position: absolute;inset: 0;display: grid;place-items: center;font-size: .8rem;letter-spacing: .3em;text-transform: uppercase;color: #fff;}
+
+/* Vorher-Bild */
+.ba .before {z-index: 1;background: repeating-linear-gradient(45deg, #2c2c2e 0 14px, #232325 14px 28px);}
+/* Nachher-Bild */
+.ba .after {z-index: 2;background: linear-gradient(135deg, #3a3120, #b8923f 60%, #e6c878);clip-path: inset(0 0 0 var(--p));}
+/* Vorher/Nachher-Beschriftungen */
+.ba b {position: absolute;top: .7rem;z-index: 3;padding: .2rem .6rem;background: rgba(0,0,0,.65);border: 1px solid var(--gold);border-radius: 3px;font-size: .65rem;letter-spacing: .2em;text-transform: uppercase;color: var(--gold2);}
+.ba .bl {left: .7rem;}
+.ba .br {right: .7rem;}
+/* Schieberegler-Linie */
+.ba .bar {position: absolute;top: 0;bottom: 0;left: var(--p);width: 2px;background: var(--gold2);transform: translateX(-1px);pointer-events: none;z-index: 3;}
+.ba .bar::after {content: "↔";position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);width: 38px;height: 38px;border-radius: 50%;background: var(--gold);color: var(--gold-ink);display: grid;place-items: center;font-weight: 700;}
+/* Unsichtbarer Schieberegler */
+.ba input {position: absolute;inset: 0;width: 100%;height: 100%;opacity: 0;cursor: ew-resize;margin: 0;z-index: 4;}
+/* ===== ECHTE BADEZIMMERBILDER ===== */
+
+.bad-projekt .before {background-image: url("./bilder/Projekte/Bausanierung.fam.vorher.jpeg");background-size: cover;background-position: center;background-repeat: no-repeat;}
+.bad-projekt .after {background-image: url("./bilder/Projekte/Bausanierung.fam.nachher.jpeg");background-size: cover;background-position: center;background-repeat: no-repeat;}
+/* Garagenprojekt */
+.garage-projekt .before {background-image: url("./bilder/Projekte/Projekt Garage vorher.jpg");background-size: cover;background-position: center;background-repeat: no-repeat;}
+.garage-projekt .after {background-image: url("./bilder/Projekte/Projekt Garage nachher.jpg");background-size: cover;background-position: center;background-repeat: no-repeat;}
+/* ===== AUSSENANLAGE ===== */
+.aussenanlage-projekt .before {background-image: url("./bilder/Projekte/Außenanlage, Familie, P. Vorher.jpg");background-size: cover;background-position: center;background-repeat: no-repeat;}
+.aussenanlage-projekt .after {background-image: url("./bilder/Projekte/Außenanlage, Familie, P. Nachher.jpg");background-size: cover;background-position: center;background-repeat: no-repeat;}
 
 /* Kontakt */
 .contact address{font-style:normal;margin:1.4rem 0;color:var(--muted)}
@@ -198,7 +217,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem
     </div>
 
 <div class="about-right">
-  <div class="portrait" role="img" aria-label="Platzhalter für Porträtfoto">Platzhalter:<br>Porträtfoto</div>
+  <div class="portrait" role="img"><img src="bilder/social-preview.png"
+     alt="plAntom Steuerungsbüro – Firmenlogo"
+     class="portrait-logo"></div>
 <div class="about-stats">
     <div class="stat-card"> 
       <strong> 20+ </strong>
@@ -330,18 +351,95 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem
     <p class="lead" style="margin-top:1.4rem">Ziehen Sie den Regler, um den Zustand vor und nach der Maßnahme zu vergleichen.</p>
     <div class="grid">
       <!-- Echte Bilder: .before/.after durch <img src="…"> ersetzen -->
-      <article class="card proj">
-        <div class="ba"><div class="l before">Vorher</div><div class="l after">Nachher</div><b class="bl">Vorher</b><b class="br">Nachher</b><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich Projekt 1"></div>
-        <div class="body"><span class="tag">Sanierung</span><h3>Projekt 1</h3><p>Kurzbeschreibung des Projekts.</p></div>
-      </article>
-      <article class="card proj">
-        <div class="ba"><div class="l before">Vorher</div><div class="l after">Nachher</div><b class="bl">Vorher</b><b class="br">Nachher</b><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich Projekt 2"></div>
-        <div class="body"><span class="tag">Umbau</span><h3>Projekt 2</h3><p>Kurzbeschreibung des Projekts.</p></div>
-      </article>
-      <article class="card proj">
-        <div class="ba"><div class="l before">Vorher</div><div class="l after">Nachher</div><b class="bl">Vorher</b><b class="br">Nachher</b><div class="bar"></div><input type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich Projekt 3"></div>
-        <div class="body"><span class="tag">Bauleitung</span><h3>Projekt 3</h3><p>Kurzbeschreibung des Projekts.</p></div>
-      </article>
+
+      <article class="card proj bad-projekt">
+
+  <div class="ba">
+
+    <div class="l before"></div>
+    <div class="l after"></div>
+
+    <b class="bl">Vorher</b>
+    <b class="br">Nachher</b>
+
+    <div class="bar"></div>
+
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      aria-label="Vorher-Nachher-Vergleich Badsanierung"
+    >
+
+  </div>
+
+  <div class="body">
+    <span class="tag">Sanierung</span>
+    <h3>Badsanierung im Dachgeschoss</h3>
+    <p>
+      Modernisierung eines Badezimmers mit neuer
+      Dusche, Waschtisch und Bodenbelag.
+    </p>
+  </div>
+
+</article>
+
+      <article class="card proj garage-projekt">
+
+  <div class="ba">
+    <div class="l before"></div>
+    <div class="l after"></div>
+
+    <b class="bl">Vorher</b>
+    <b class="br">Nachher</b>
+
+    <div class="bar"></div>
+
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      aria-label="Vorher-Nachher-Vergleich Garagenumbau"
+    >
+  </div>
+
+  <div class="body">
+    <span class="tag">Umbau & Modernisierung</span>
+    <h3>Garagenumbau mit Sauna</h3>
+    <p>Umgestaltung eines Garagenraums zu einem modernen Wellnessbereich mit Sauna.</p>
+  </div>
+
+</article>
+
+      <article class="card proj aussenanlage-projekt">
+
+  <div class="ba">
+    <div class="l before"></div>
+    <div class="l after"></div>
+
+    <b class="bl">Vorher</b>
+    <b class="br">Nachher</b>
+
+    <div class="bar"></div>
+
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      aria-label="Vorher-Nachher-Vergleich Außenanlage"
+    >
+  </div>
+
+  <div class="body">
+    <span class="tag">Außenanlagen</span>
+    <h3>Modernisierung einer Außenanlage</h3>
+    <p>Neugestaltung des Außenbereichs mit modernem Erscheinungsbild.</p>
+  </div>
+
+</article>
     </div>
   </div>
 </section>
@@ -352,17 +450,35 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem
       <h2>Kontakt</h2>
       <p class="lead" style="margin-top:1.4rem">Schildern Sie mir kurz Ihr Vorhaben – ich melde mich zeitnah.</p>
       <address>
-        PLANTOM Steuerungsbüro<br>[Straße Nr.], [PLZ Ort]<br>
-        Tel.: <a href="tel:+49000000000">[Telefonnummer]</a><br>
-        E-Mail: <a href="mailto:info@example.de">[info@ihre-domain.de]</a>
+        <strong>PLANTOM Steuerungsbüro</strong><br>
+    Inhaber: Artjom Stepanov<br>
+    Im Schiefer 35<br>
+    53577 Neustadt (Wied)<br><br>
+
+        Telefon: <a href="tel:+4926839488223">02683 9488223</a><br>
+
+    Mobil: <a href="tel:+4915233534728">01523 3534728</a><br>
+        E-Mail: <a href="mailto:info@plantom.de">info@plantom.de</a>
       </address>
     </div>
-    <div class="card">
-      <label for="n">Name</label><input class="fld" id="n" autocomplete="name">
-      <label for="m">Nachricht</label><textarea class="fld" id="m" rows="4"></textarea>
-      <button class="btn" id="send" type="button">Nachricht senden</button>
-      <p style="font-size:.78rem;color:var(--muted);margin:.9rem 0 0">Öffnet Ihr E-Mail-Programm. Ein echtes Formular kann später angebunden werden.</p>
-    </div>
+
+      <div class="card">
+
+    <label for="n">Name</label>
+    <input class="fld" id="n" autocomplete="name">
+
+    <label for="m">Nachricht</label>
+    <textarea class="fld" id="m" rows="4"></textarea>
+
+    <button class="btn" id="send" type="button">
+        Nachricht senden
+    </button>
+
+    <p style="font-size:.78rem;color:var(--muted);margin:.9rem 0 0">
+        Öffnet Ihr E-Mail-Programm.
+    </p>
+
+</div></div>
   </div>
 </section>
 </main>
@@ -376,9 +492,21 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem
 const menu=document.getElementById('menu'),bg=document.getElementById('burger');
 bg.onclick=()=>{bg.setAttribute('aria-expanded',menu.classList.toggle('open'))};
 menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');bg.setAttribute('aria-expanded',false)});
-document.querySelectorAll('.ba input').forEach(i=>{const s=()=>i.parentNode.style.setProperty('--p',i.value+'%');i.oninput=s;s()});
+document.querySelectorAll('.ba').forEach(compare => {
+    const slider = compare.querySelector('input[type="range"]');
+    const after = compare.querySelector('.after');
+    const bar = compare.querySelector('.bar');
+    if (!slider || !after || !bar) return;
+    function updateComparison() {
+        const value = Number(slider.value);
+        after.style.clipPath = `inset(0 0 0 ${value}%)`;
+        bar.style.left = `${value}%`;}
+  slider.addEventListener('input', updateComparison);updateComparison();});
 document.getElementById('y').textContent=new Date().getFullYear();
-document.getElementById('send').onclick=()=>{location.href='mailto:info@example.de?subject='+encodeURIComponent('Anfrage über die Website')+'&body='+encodeURIComponent(document.getElementById('m').value+'\n\n'+document.getElementById('n').value)};
+document.getElementById('send').onclick = () => {
+    const name = document.getElementById('n').value;const message = document.getElementById('m').value;
+    const subject = encodeURIComponent('Anfrage über die PLANTOM-Website');const body = encodeURIComponent('Name: ' + name + '\n\n' +'Nachricht:\n' + message);
+    window.location.href ='mailto:info@plantom.de?subject=' + subject + '&body=' + body;};
 </script>
 </body>
 </html>
